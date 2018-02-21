@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:map="http://nominanuda.com/ns/2011/mvcfrontcontroller-1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://nominanuda.com/ns/2011/mvcfrontcontroller-1.0 http://nominanuda.com/ns/2011/mvcfrontcontroller-1.0.xsd
+">
+
+    <import resource="classpath:coinapse-ws-servlet.xml"/><!--api -->
+	
+
+	<map:match id="page">
+		<map:pattern>/page.html</map:pattern>
+		<map:source>
+			<map:url>classpath:/page.html</map:url>
+		</map:source>
+	</map:match>
+
+	<!-- properties -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:coinapse-webapp.properties</value>
+				<value>file:/opt/coinapse/coinapse-webapp.properties</value>
+				<value>file:${user.home}/coinapse/coinapse-webapp.properties</value>
+				<value>classpath:coinapse-ws.properties</value>
+				<value>file:/opt/coinapse/coinapse-ws.properties</value>
+				<value>file:${user.home}/coinapse/coinapse-ws.properties</value>
+			</list>
+		</property>
+	</bean>
+</beans>

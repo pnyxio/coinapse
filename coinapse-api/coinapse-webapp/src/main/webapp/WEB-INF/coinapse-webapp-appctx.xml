@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <import resource="classpath:coinapse-ws-appctx.xml"/><!-- api -->
+
+    <bean id="soySource" class="com.nominanuda.springsoy.JarSoySource">
+		<property name="templatesLocations" value="com/coinapse/webapp/soy" />
+		<property name="cache" value="${coinapse-webapp.soy.cache:true}" />
+	</bean>
+    <!-- common -->
+    <bean class="com.nominanuda.springsoy.SoyViewResolver">
+            <property name="soySource" ref="soySource" />
+    </bean>
+
+    <bean class="com.nominanuda.springmvc.HandlerAdapterWrapper">
+            <property name="handlerAdapter">
+                    <bean class="com.nominanuda.web.mvc.WebServiceAdapter" />
+            </property>
+    </bean>
+
+    <bean class="com.nominanuda.springmvc.HandlerAdapterWrapper">
+            <property name="handlerAdapter">
+                    <bean class="com.nominanuda.web.mvc.CommandRequestHandlerAdapter" />
+            </property>
+    </bean>
+
+    <bean class="com.nominanuda.springmvc.HandlerAdapterWrapper">
+            <property name="handlerAdapter">
+                    <bean class="com.nominanuda.web.mvc.CommandHandlerAdapter" />
+            </property>
+    </bean>
+
+    <bean id="httpRequestHandlerAdapter" class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+
+	<!-- properties -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:coinapse-webapp.properties</value>
+				<value>file:/opt/coinapse/coinapse-webapp.properties</value>
+				<value>file:${user.home}/coinapse/coinapse-webapp.properties</value>
+			</list>
+		</property>
+	</bean>
+</beans>
