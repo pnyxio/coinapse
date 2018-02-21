@@ -2,6 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 <beans>
+	<bean id="portfolioApi" class="com.coinapse.api.ws.PortfolioApiImpl">
+
+
+	</bean>
+	<!-- common-->
     <bean class="com.nominanuda.zen.jvmurl.PluggableURLStreamHandlerFactory" init-method="installToJvm" />
 	<!-- properties -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

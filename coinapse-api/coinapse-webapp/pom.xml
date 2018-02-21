@@ -15,6 +15,19 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>com.coinapse</groupId>
+			<artifactId>coinapse-ws</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.nominanuda</groupId>
+			<artifactId>zen-jsweb</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
@@ -26,5 +39,12 @@
  	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.8.v20171121</version>
+			</plugin>
+		</plugins>
 	</build>
 </project>

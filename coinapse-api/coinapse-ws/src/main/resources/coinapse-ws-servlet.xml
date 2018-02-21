@@ -4,20 +4,27 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		http://nominanuda.com/ns/2011/mvcfrontcontroller-1.0 http://nominanuda.com/ns/2011/mvcfrontcontroller-1.0.xsd">
 
-
+<!--
 	<map:match id="">
 		<map:pattern>${coinapse-ws.api.prefix}/blah/{foo}.json</map:pattern>
 		<map:handler ref=""/>
 	</map:match>
-
-	<map:match id="someHyperApi">
-		<map:pattern>${coinapse-ws.prefix}/fff</map:pattern>
+-->
+	<map:match id="portfolioHyperApi">
+		<map:pattern>${coinapse-ws.api.prefix}/portfolio.{method}</map:pattern>
 		<map:handler>
 			<bean class="com.nominanuda.hyperapi.HyperApiWsSkelton">
-				<property name="api" value="com.sss.AnInterface" />
-				<property name="requestUriPrefix" value="${xxx.api.prefix}" />
-				<property name="service" ref="aBeanImpl" />
+				<property name="api" value="com.coinapse.api.protocol.PortfolioApi" />
+				<property name="requestUriPrefix" value="${coinapse-ws.api.prefix}" />
+				<property name="service" ref="portfolioApi" />
 			</bean>
+		</map:handler>
+	</map:match>
+
+	<map:match id="notFound">
+		<map:pattern>/{any */*}</map:pattern>
+		<map:handler>
+			<bean class="com.nominanuda.springmvc.NotFoundExceptionRaiser"/>
 		</map:handler>
 	</map:match>
 </beans>

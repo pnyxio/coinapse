@@ -40,7 +40,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.nominanuda</groupId>
-			<artifactId>zen-core</artifactId>
+			<artifactId>zen-webservice</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
